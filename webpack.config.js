@@ -9,14 +9,19 @@ module.exports = {
     },
     output: {
         filename: '[name]-[hash].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
+    devtool: 'inline-source-map',
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Output Management'
         })
     ],
+    devServer: {
+      contentBase: './dist'
+    },
     module: {
         rules: [
             {
