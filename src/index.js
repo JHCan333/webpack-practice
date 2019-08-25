@@ -8,7 +8,7 @@ function component () {
 
     // Lodash, currently included via a script, is required for this line to work
     // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hel2211lo', 'webpack'], ' ')
+    element.innerHTML = _.join(['Hello1', 'webpack'], ' ')
     element.classList.add('hello')
 
     btn.innerHTML = 'Click me and check the console!'
@@ -17,5 +17,13 @@ function component () {
 
     return element
 }
+let element = component();
+document.body.appendChild(element)
 
-document.body.appendChild(component())
+if (module.hot) {
+    module.hot.accept('./print.js', function () {
+        document.body.removeChild(element);
+        element = component();
+        document.body.appendChild(element);
+    })
+}
